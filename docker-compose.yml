@@ -3,6 +3,12 @@ services:
     build: .
     image: ssh-decoy:latest
     container_name: ssh-decoy
+    user: nobody
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
     restart: unless-stopped
     ports:
       - "22:22/tcp"
