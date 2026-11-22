@@ -7,7 +7,6 @@ MESSAGE = (
     b"\r\n"
     b"Erm, what are you doing?\r\n"
     b"Get the fuck away from my server, CLANKER! :(\r\n"
-    b"As a punishment, you shall wait forever.....\r\n"
     b"\r\n"
     b"\r\n"
     b"\r\n"
