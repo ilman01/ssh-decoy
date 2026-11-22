@@ -51,15 +51,6 @@ class SSHDecoy(socketserver.BaseRequestHandler):
 
             client.sendall(MESSAGE)
 
-            # Congratulations. You are now stuck here.
-            client.settimeout(None)
-
-            while True:
-                data = client.recv(1024)
-
-                if not data:
-                    break
-
         except (OSError, TimeoutError):
             pass
 
