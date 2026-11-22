@@ -10,6 +10,7 @@ MESSAGE = (
     b"\r\n"
     b"\r\n"
     b"\r\n"
+    b"\r\n"
     b"Never gonna give you up\r\n"
     b"Never gonna let you down\r\n"
     b"Never gonna run around and desert you\r\n"
