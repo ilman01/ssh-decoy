@@ -15,6 +15,7 @@ MESSAGE = (
     b"Never gonna let you down\r\n"
     b"Never gonna run around and desert you\r\n"
     b"Never gonna make you cry\r\n"
+    b"Never gonna say goodbye\r\n"
     b"Never gonna tell a lie and hurt you\r\n"
 )
 
