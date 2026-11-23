@@ -1,4 +1,7 @@
 import socketserver
+import json
+import urllib.request
+from functools import lru_cache
 
 MESSAGE = (
     b"================================================\r\n"
@@ -19,10 +22,31 @@ MESSAGE = (
     b"Never gonna tell a lie and hurt you\r\n"
 )
 
+@lru_cache(maxsize=1024)
+def get_location(ip):
+    try:
+        url = f"https://ipwho.is/{ip}"
+
+        with urllib.request.urlopen(url, timeout=2) as response:
+            data = json.loads(response.read())
+
+        if data.get("success"):
+            city = data.get("city", "Unknown")
+            country = data.get("country", "Unknown")
+
+            return f"{city}, {country}"
+
+    except Exception:
+        pass
+
+    return "Unknown"
 
 class SSHDecoy(socketserver.BaseRequestHandler):
     def handle(self):
         client = self.request
+
+        ip = self.client_address[0]
+        location = get_location(ip)
 
         try:
             client.settimeout(5)
@@ -44,8 +68,7 @@ class SSHDecoy(socketserver.BaseRequestHandler):
                 return
 
             print(
-                f"[{self.client_address[0]}] "
-                f"Found the wrong SSH entrance!",
+                f"[{ip}] Someone from {location} found the wrong SSH entrance!",
                 flush=True
             )
 
